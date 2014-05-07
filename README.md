@@ -1,6 +1,6 @@
 ####How to execute the code?####
 ---
-`./left_edge.py -i netlist.data`
+./left_edge.py -i netlist.data
 ---
 ####Where is the default netlist?####
 ---

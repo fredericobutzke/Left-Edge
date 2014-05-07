@@ -36,6 +36,7 @@ while list(netlist) :
 
 
 print "\nSolution: "
-print final_zone
+for i, t in enumerate(final_zone) :
+	print "Track %i" % (i+1), " has the following netlists: ", t
 
 UI(top, bottom, final_zone)

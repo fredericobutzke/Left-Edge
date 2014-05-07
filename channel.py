@@ -1,19 +1,15 @@
 import Tkinter 
 from Tkinter import *
 
-# top_pins = ['0','A','D','E','A','F','G','0','D','I','J','J']
-# bottom_pins = ['B','C','E','C','E','B','F','H','I','H','G','I']
-# tracks = [['A', 'J'], ['D'], ['E', 'G'], ['C', 'F', 'I'], ['B', 'H']]
-
 class UI():
 	def __init__ (self, top_pins, bottom_pins, tracks) :
 		self.top_pins = top_pins
 		self.bottom_pins = bottom_pins
 		self.tracks = tracks
 
-		print tracks
 		top = Tkinter.Tk()
-		
+		top.resizable(0,0)
+
 		track_heigh = 50
 		track_space = 25
 		
@@ -22,7 +18,7 @@ class UI():
 		
 		frame=Frame(top)
 		frame.grid(row=0,column=0)
-		w=Canvas(frame,bg='#FFFFFF',width=1000,height=600,scrollregion=(0,0,200*len(top_pins),400+100*len(tracks)))
+		w=Canvas(frame,bg='#FFFFFF',width=1000,height=600,scrollregion=(0,0,175*len(top_pins)-150,125*len(tracks)))
 		hbar=Scrollbar(frame,orient=HORIZONTAL)
 		hbar.pack(side=BOTTOM,fill=X)
 		hbar.config(command=w.xview)
@@ -34,7 +30,6 @@ class UI():
 		
 		for j, p in enumerate(self.top_pins) :
 			if p is not '0' :
-				print p
 				xplace = j*150+50
 				bbox = (xplace, 5, xplace+100, 105)
 				q = w.create_rectangle(bbox, fill="white", tags=('pino', p))

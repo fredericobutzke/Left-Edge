@@ -1,7 +1,7 @@
-__bold__How to execute the code?__bold__
+####How to execute the code?####
 ---
 `./left_edge.py -i netlist.data`
 ---
-__bold__Where is the default netlist?__bold__
+####Where is the default netlist?####
 ---
-It is located inside the file _italic_netlist.data_italic_
+It is located inside the file *netlist.data*

@@ -2,6 +2,7 @@
 
 from Read_Data import Read_Data
 import Utilities
+from channel import UI
 
 rd = Read_Data("netlist.data", "r")
 top, bottom, columns, netlist = rd.getData()
@@ -36,3 +37,5 @@ while list(netlist) :
 
 print "\nSolution: "
 print final_zone
+
+UI(top, bottom, final_zone)

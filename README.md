@@ -1,12 +1,6 @@
-**How to execute the code?**
+__bold__How to execute the code?__bold__
 ----
-`./left_edge.py -i netlist.data`
+`./left_edge.py -i netlist.
 ----
-**What is the default netlist?**
-----
-`.top
-0 A D E A F G 0 D I J J
-.bottom
-B C E C E B F H I H G I
-.end`
-
+__bold__Where is the default netlist?__bold__
+It is located inside the file __italic__netlist.data__italic__

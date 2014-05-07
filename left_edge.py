@@ -3,14 +3,38 @@
 from Read_Data import Read_Data
 import Utilities
 from channel import UI
+import getopt
+import sys
 
-rd = Read_Data("netlist.data", "r")
+##### 
+#Main
+
+verbose = False
+try:
+	values, arguments = getopt.getopt(sys.argv[1:], "i:hv")
+	if values == [] or "i" not in [i[0].strip('-') for i in values] :
+		values = [('-h','')]
+except getopt.GetoptError :
+	print './left_edge.py -i <inputfile>'	
+for opt, value in values :
+	if opt == "-h" :
+		print 'Usage:'
+		print 'Required Arguments:'
+		print '-i <inputfile>'
+		sys.exit()
+	elif opt == "-i" :
+		input_file = value
+	elif opt == "-v" :
+		verbose = True
+
+rd = Read_Data(value, "r")
 top, bottom, columns, netlist = rd.getData()
-print "\nNetlist Information: "
-print "Columns: ", columns
-print "Top pins: ", top
-print "Bottom pins: ", bottom
-print "Netlist: ", netlist
+if verbose :
+	print "\nNetlist Information: "
+	print "Columns: ", columns
+	print "Top pins: ", top
+	print "Bottom pins: ", bottom
+	print "Netlist: ", netlist
 
 rtop = top[:]
 rbottom = bottom[:]
@@ -24,14 +48,14 @@ for i in list(set(top)|set(bottom)) :
 			rbottom.insert(rbottom.index(i), '0')
 		netlist.remove(i)
 
-print "\nVCG"
+if verbose : print "\nVCG"
 parents, nodes = Utilities.getVCG(rtop, rbottom)
-print "Parents: ", parents
-print "Nodes: ", nodes
+if verbose : print "Parents: ", parents
+if verbose : print "Nodes: ", nodes
 
-print "\nZone Representation"
+if verbose : print "\nZone Representation"
 zones = Utilities.getZoneRepresentation(rtop, rbottom)
-print "Zones: ", zones
+if verbose : print "Zones: ", zones
 
 final_zone = list()
 

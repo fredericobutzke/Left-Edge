@@ -12,13 +12,25 @@ print "Top pins: ", top
 print "Bottom pins: ", bottom
 print "Netlist: ", netlist
 
+rtop = top[:]
+rbottom = bottom[:]
+total_nelist = top + bottom
+for i in list(set(top)|set(bottom)) :
+	if total_nelist.count(i) < 2 and i != '0' :
+		if i in rtop :
+			rtop.insert(rtop.index(i), '0')
+			rtop.remove(i)
+		if i in rbottom :
+			rbottom.insert(rbottom.index(i), '0')
+		netlist.remove(i)
+
 print "\nVCG"
-parents, nodes = Utilities.getVCG(top, bottom)
+parents, nodes = Utilities.getVCG(rtop, rbottom)
 print "Parents: ", parents
 print "Nodes: ", nodes
 
 print "\nZone Representation"
-zones = Utilities.getZoneRepresentation(top, bottom)
+zones = Utilities.getZoneRepresentation(rtop, rbottom)
 print "Zones: ", zones
 
 final_zone = list()

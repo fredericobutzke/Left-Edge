@@ -24,15 +24,15 @@ final_zone = list()
 
 while list(netlist) :
 	current_net = list()
-	raw_input()
+
 	for p in parents :
 		if Utilities.noConflict(p, zones, current_net) :
 			current_net.append(p)
 			netlist.remove(p)
 	parents = Utilities.updateVCG(parents, current_net, nodes)
-	print "Net Parents: ", parents
+
 	final_zone.append(current_net)
-	print nodes
+
 
 print "\nSolution: "
 print final_zone
